@@ -3,7 +3,7 @@ import pandas as pd
 # Функция для загрузки и предобработки данных
 def preprocess_data():
     # Загружаем данные
-    df = pd.read_csv('data/vacancies.csv')
+    df = pd.read_csv('.././data/vacancies.csv')
 
     # Очистка данных (удаляем строки с пропущенными значениями)
     df = df.dropna(subset=['salary', 'area', 'experience', 'professional_roles'])

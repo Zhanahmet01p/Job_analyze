@@ -1,8 +1,10 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from models.statistics import get_full_vacancy_info
 from models.preprocessing import preprocess_data
 
 app = Flask(__name__)
+CORS(app)
 
 # Роут для получения статистики
 @app.route('/api/statistics', methods=['GET'])
