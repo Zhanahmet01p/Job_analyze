@@ -35,31 +35,31 @@ const ChartVisualization = ({ vacancies }) => {
       setChartData({
         labels: Object.keys(ranges),
         values: Object.values(ranges),
-        title: 'Распределение зарплат'
+        title: 'Salary distribution'
       });
     } else if (chartType === 'experience') {
       // Распределение по опыту
       const expCounts = {
-        'Нет опыта': 0,
-        'До 1 года': 0,
-        '1-3 года': 0,
-        '3-6 лет': 0,
-        'Более 6 лет': 0
+        'No experience': 0,
+        'Less than 1 year': 0,
+        '1-3 years': 0,
+        '3-6 years': 0,
+        'More than 6 years': 0
       };
 
       vacancies.forEach(v => {
         const exp = v.experience_years;
-        if (exp === 0) expCounts['Нет опыта']++;
-        else if (exp === 1) expCounts['До 1 года']++;
-        else if (exp === 2) expCounts['1-3 года']++;
-        else if (exp === 5) expCounts['3-6 лет']++;
-        else if (exp === 7) expCounts['Более 6 лет']++;
+        if (exp === 0) expCounts['No experience']++;
+        else if (exp === 1) expCounts['Less than 1 year']++;
+        else if (exp === 2) expCounts['1-3 years']++;
+        else if (exp === 5) expCounts['3-6 years']++;
+        else if (exp === 7) expCounts['More than 6 years']++;
       });
 
       setChartData({
         labels: Object.keys(expCounts),
         values: Object.values(expCounts),
-        title: 'Распределение по опыту'
+        title: 'Experience distribution'
       });
     }
   }, [vacancies, chartType]);
@@ -68,7 +68,7 @@ const ChartVisualization = ({ vacancies }) => {
     return (
       <div className="bg-white p-4 rounded shadow mb-6">
         <p className="text-gray-500 text-center py-8">
-          Нет данных для отображения графиков
+          No data available for chart visualization
         </p>
       </div>
     );
@@ -88,8 +88,8 @@ const ChartVisualization = ({ vacancies }) => {
           value={chartType}
           onChange={(e) => setChartType(e.target.value)}
         >
-          <option value="salary">По зарплате</option>
-          <option value="experience">По опыту</option>
+          <option value="salary">By salary</option>
+          <option value="experience">By experience</option>
         </select>
       </div>
 

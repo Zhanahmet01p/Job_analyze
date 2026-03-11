@@ -29,8 +29,8 @@ const App = () => {
       setFilteredVacancies(vacanciesList);
       setError(null);
     } catch (error) {
-      console.error("Ошибка загрузки данных:", error);
-      setError("Не удалось загрузить данные. Проверьте подключение к серверу.");
+      console.error("Data upload error:", error);
+      setError("Failed to load data. Please check your connection to the server.");
     } finally {
       setLoading(false);
     }
@@ -77,7 +77,7 @@ const App = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Загрузка данных...</p>
+          <p className="mt-4 text-gray-600">Loading data...</p>
         </div>
       </div>
     );
@@ -92,7 +92,7 @@ const App = () => {
             onClick={fetchVacancies}
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
-            Повторить попытку
+            Retry
           </button>
         </div>
       </div>
@@ -102,7 +102,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">
-        Анализ вакансий
+        Job Vacancy Analysis
       </h1>
       <div className="max-w-6xl mx-auto">
         <FilterPanel 

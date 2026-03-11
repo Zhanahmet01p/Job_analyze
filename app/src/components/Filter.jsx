@@ -26,16 +26,16 @@ const FilterPanel = ({ onFilterChange, totalVacancies }) => {
   return (
     <div className="bg-white p-4 rounded shadow mb-6">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-gray-700">Фильтры</h2>
+        <h2 className="text-xl font-semibold text-gray-700">Filters</h2>
         <span className="text-sm text-gray-500">
-          Всего вакансий: {totalVacancies}
+          Total vacancies: {totalVacancies}
         </span>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <input
           type="text"
-          placeholder="Поиск по названию"
+          placeholder="Name search"
           className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -43,7 +43,7 @@ const FilterPanel = ({ onFilterChange, totalVacancies }) => {
         
         <input
           type="text"
-          placeholder="Название компании"
+          placeholder="Company name"
           className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
@@ -51,7 +51,7 @@ const FilterPanel = ({ onFilterChange, totalVacancies }) => {
         
         <input
           type="number"
-          placeholder="Мин. зарплата"
+          placeholder="Min. salary"
           className="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-300"
           value={minSalary}
           onChange={(e) => setMinSalary(e.target.value)}
@@ -64,12 +64,12 @@ const FilterPanel = ({ onFilterChange, totalVacancies }) => {
           value={experience}
           onChange={(e) => setExperience(e.target.value)}
         >
-          <option value="all">Любой опыт</option>
-          <option value="0">Нет опыта</option>
-          <option value="1">До 1 года</option>
-          <option value="2">1-3 года</option>
-          <option value="5">3-6 лет</option>
-          <option value="7">Более 6 лет</option>
+          <option value="all">Any experience</option>
+          <option value="0">No experience</option>
+          <option value="1">Less than 1 year</option>
+          <option value="2">1-3 years</option>
+          <option value="5">3-6 years</option>
+          <option value="7">More than 6 years</option>
         </select>
       </div>
       
@@ -78,13 +78,13 @@ const FilterPanel = ({ onFilterChange, totalVacancies }) => {
           className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors"
           onClick={handleFilterChange}
         >
-          Применить фильтры
+          Apply filters
         </button>
         <button
           className="bg-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-400 transition-colors"
           onClick={handleReset}
         >
-          Сбросить
+          Reset
         </button>
       </div>
     </div>
