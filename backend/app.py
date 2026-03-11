@@ -1,22 +1,42 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_cors import CORS
-from models.statistics import get_full_vacancy_info
-from models.preprocessing import preprocess_data
+
+from services.preprocessing import preprocess_data
+from routes.vacancies import register_vacancy_routes
+from routes.analytics import register_analytics_routes
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)  # Разрешаем CORS для всех маршрутов
 
-# Роут для получения статистики
-@app.route('/api/statistics', methods=['GET'])
-def statistics():
-    # Предобработка данных
+print("=" * 50)
+print("Loading dataset...")
+print("=" * 50)
+
+try:
     df = preprocess_data()
+    print(f"Dataset loaded successfully: {len(df)} vacancies")
+    print(f"Columns: {df.columns.tolist()}")
+    print("=" * 50)
+except Exception as e:
+    print(f"Error loading dataset: {e}")
+    import traceback
+    traceback.print_exc()
+    exit(1)
 
-    # Получаем статистику по вакансиям
-    full_vacancy_info = get_full_vacancy_info(df)
+# Регистрируем маршруты
+register_vacancy_routes(app, df)
+register_analytics_routes(app, df)
 
-    return jsonify(full_vacancy_info)
+print("🚀 Routes registered:")
+print("  - GET /api/vacancies")
+print("  - GET /api/search?query=...")
+print("  - GET /api/vacancy/<id>")
+print("  - GET /api/analytics/salary")
+print("  - GET /api/analytics/cities")
+print("  - GET /api/analytics/experience")
+print("  - GET /api/analytics/salary_range")
+print("  - GET /api/analytics/dashboard")
+print("=" * 50)
 
-# Запуск приложения
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0', port=5000)
